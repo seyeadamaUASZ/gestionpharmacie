@@ -8,6 +8,7 @@ import com.sid.gl.tools.ServeurResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/medicament")
@@ -23,13 +24,13 @@ public class MedicamentController {
         ServeurResponse serveurResponse = new ServeurResponse();
         List<MedicamentGetDTO> medicamentGetDTOS = iMedicament.listMedicaments();
         if(!medicamentGetDTOS.isEmpty()){
-            serveurResponse.setData(null);
-            serveurResponse.setDescription("liste vide");
-            serveurResponse.setStatut(false);
-        }else{
             serveurResponse.setData(medicamentGetDTOS);
             serveurResponse.setDescription("liste des médicaments");
             serveurResponse.setStatut(true);
+        }else{
+            serveurResponse.setData(null);
+            serveurResponse.setDescription("liste vide");
+            serveurResponse.setStatut(false);
         }
         return serveurResponse;
     }
@@ -37,6 +38,8 @@ public class MedicamentController {
     @PostMapping
     public ServeurResponse addMedicament(@RequestBody MedicamentPostDTO medicamentPostDTO){
         ServeurResponse serveurResponse = new ServeurResponse();
+        String codeMedoc = "Med"+ UUID.randomUUID();
+        medicamentPostDTO.setCodeMedicament(codeMedoc);
         Medicament medicament=iMedicament.addMedicament(medicamentPostDTO);
         if(!medicament.equals("")){
             serveurResponse.setStatut(true);

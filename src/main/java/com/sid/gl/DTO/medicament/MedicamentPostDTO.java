@@ -21,8 +21,10 @@ public class MedicamentPostDTO {
     private double prixu;
     @JsonProperty("stock")
     private int stock;
+    @JsonProperty("nomMedicament")
+    private String nomMedicament;
     @JsonProperty("categorie")
     private Categorie categorie;
-    @JsonProperty("url_image")
+    @JsonProperty("urlImage")
     private String urlImage;
 }

@@ -20,6 +20,8 @@ public class Medicament {
     private double prixu;
     @Column(name="stock_medicament")
     private int stock;
+    @Column(name="nom_medicament")
+    private String nomMedicament;
     @ManyToOne
     @JoinColumn(name="id_categorie")
     private Categorie categorie;
