@@ -39,7 +39,7 @@ public class ClientController {
     public ServeurResponse addClient(@RequestBody ClientPostDTO clientPostDTO){
         ServeurResponse serveurResponse = new ServeurResponse();
         Client client = iClient.addClient(clientPostDTO);
-        if(!client.equals("")){
+        if(client!=null){
             serveurResponse.setDescription("client ajouté");
             serveurResponse.setStatut(true);
             serveurResponse.setData(client);
@@ -56,7 +56,7 @@ public class ClientController {
     public ServeurResponse getClient(@PathVariable("id") Long id){
         ServeurResponse serveurResponse = new ServeurResponse();
         ClientGetDTO clientGetDTO = iClient.getClient(id);
-        if(!clientGetDTO.equals("")){
+        if(clientGetDTO!=null){
             serveurResponse.setDescription("client retrouvé");
             serveurResponse.setStatut(true);
             serveurResponse.setData(clientGetDTO);

@@ -41,7 +41,7 @@ public class MedicamentController {
         String codeMedoc = "Med"+ UUID.randomUUID();
         medicamentPostDTO.setCodeMedicament(codeMedoc);
         Medicament medicament=iMedicament.addMedicament(medicamentPostDTO);
-        if(!medicament.equals("")){
+        if(medicament!=null){
             serveurResponse.setStatut(true);
             serveurResponse.setData(medicament);
             serveurResponse.setDescription("médicament ajouté avec succés");
@@ -57,7 +57,7 @@ public class MedicamentController {
     public ServeurResponse checkMedicament(@PathVariable("id") Long id){
         ServeurResponse serveurResponse = new ServeurResponse();
         MedicamentGetDTO medicament = iMedicament.getMedicament(id);
-        if(!medicament.equals("")){
+        if(medicament!=null){
             serveurResponse.setStatut(true);
             serveurResponse.setData(medicament);
             serveurResponse.setDescription("médicament recupéré");

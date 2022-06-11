@@ -9,7 +9,7 @@ import com.sid.gl.tools.ServeurResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/categorie")
@@ -41,7 +41,7 @@ public class CategorieController {
     public ServeurResponse addCategorie(@RequestBody CategoriePostDTO categoriePostDTO){
         ServeurResponse response = new ServeurResponse();
         Categorie categorie = iCategorie.addCategorie(categoriePostDTO);
-        if(!categorie.equals("")){
+        if(categorie!=null){
             response.setStatut(true);
             response.setDescription("categorie ajoutée ");
             response.setData(categorie);
@@ -57,7 +57,7 @@ public class CategorieController {
     public ServeurResponse getCategorie(@PathVariable("id")Long id){
         ServeurResponse response = new ServeurResponse();
        CategorieGetDTO categorie = iCategorie.getCategorie(id);
-        if(!categorie.equals("")){
+        if(categorie!=null){
             response.setStatut(true);
             response.setDescription("categorie trouvée ");
             response.setData(categorie);
