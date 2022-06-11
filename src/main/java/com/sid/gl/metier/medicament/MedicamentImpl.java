@@ -31,17 +31,17 @@ public class MedicamentImpl implements IMedicament{
     @Override
     public List<MedicamentGetDTO> listMedicaments() {
         List<Medicament> medicaments = this.repository.findAll();
-        List<MedicamentGetDTO> medicamentGetDTOS = medicaments.stream()
+        return medicaments.stream()
                 .map(medicament -> doMapper.fromMedicament(medicament))
                 .collect(Collectors.toList());
-        return medicamentGetDTOS;
     }
 
     @Override
     public MedicamentGetDTO getMedicament(Long id) {
         Optional<Medicament> medicament = this.repository.findById(id);
         if(medicament.isPresent()){
-            return doMapper.optionalfromMedicament(medicament);
+            Medicament med = medicament.get();
+            return doMapper.fromMedicament(med);
         }
         return null;
     }

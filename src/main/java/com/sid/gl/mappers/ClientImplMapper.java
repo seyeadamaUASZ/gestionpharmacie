@@ -25,11 +25,11 @@ public class ClientImplMapper {
         return clientGetDTO;
     }
 
-    public ClientGetDTO opTionalfromClient(Optional<Client> client){
+    /*public ClientGetDTO opTionalfromClient(Optional<Client> client){
         ClientGetDTO clientGetDTO = new ClientGetDTO();
         BeanUtils.copyProperties(client,clientGetDTO);
         return clientGetDTO;
-    }
+    }*/
 
     public Client fromClientPostDto(ClientPostDTO clientPostDTO){
         Client client = new Client();
@@ -63,11 +63,12 @@ public class ClientImplMapper {
 
 
 
-   public CategorieGetDTO oPtioncategorieToCategorieGetDTO(Optional<Categorie> categorie){
-       CategorieGetDTO  categorieGetDTO = new CategorieGetDTO();
+   /*public Optional<CategorieGetDTO>  oPtioncategorieToCategorieGetDTO(Optional<Categorie> categorie){
+       Optional<CategorieGetDTO> categorieGetDTO= Optional.of(new CategorieGetDTO());
        BeanUtils.copyProperties(categorie,categorieGetDTO);
+       System.out.println(categorie);
        return categorieGetDTO;
-   }
+   }*/
 
    public Medicament fromMedicamentPostDTO(MedicamentPostDTO medicamentPostDTO){
        Medicament medicament = new Medicament();
@@ -81,9 +82,9 @@ public class ClientImplMapper {
        return medicamentGetDTO;
    }
 
-    public MedicamentGetDTO optionalfromMedicament(Optional<Medicament> medicament){
+    /*public MedicamentGetDTO optionalfromMedicament(Optional<Medicament> medicament){
         MedicamentGetDTO medicamentGetDTO = new MedicamentGetDTO();
         BeanUtils.copyProperties(medicament,medicamentGetDTO);
         return medicamentGetDTO;
-    }
+    }*/
 }

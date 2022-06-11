@@ -32,17 +32,17 @@ public class ClientImpl implements IClient{
     @Override
     public List<ClientGetDTO> listClient() {
         List<Client> listClients = this.repository.findAll();
-        List<ClientGetDTO> clientGetDTOS = listClients.stream()
+        return listClients.stream()
                 .map(client -> doMapper.fromClient(client))
                 .collect(Collectors.toList());
-        return clientGetDTOS;
     }
 
     @Override
     public ClientGetDTO getClient(Long id) {
         Optional<Client> client = this.repository.findById(id);
         if(client.isPresent()){
-            return doMapper.opTionalfromClient(client);
+            Client cl = client.get();
+            return doMapper.fromClient(cl);
         }
         return null;
     }

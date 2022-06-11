@@ -3,6 +3,7 @@ package com.sid.gl.metier.categorie;
 import com.sid.gl.DTO.categorie.CategorieGetDTO;
 import com.sid.gl.DTO.categorie.CategoriePostDTO;
 import com.sid.gl.entities.Categorie;
+import com.sid.gl.entities.Operation;
 import com.sid.gl.exceptions.ResourceNotFoundException;
 import com.sid.gl.mappers.ClientImplMapper;
 import com.sid.gl.repositories.CategorieRepository;
@@ -31,18 +32,18 @@ public class ICategorieImpl implements ICategorie {
     @Override
     public List<CategorieGetDTO> listCategories() {
         List<Categorie> categories = this.repository.findAll();
-        List<CategorieGetDTO> categorieGetDTOS = categories.stream()
+
+        return categories.stream()
                 .map(categorie -> doMapper.fromCategorie(categorie))
                 .collect(Collectors.toList());
-
-        return categorieGetDTOS;
     }
 
     @Override
     public CategorieGetDTO getCategorie(Long id) {
         Optional<Categorie> categorie = this.repository.findById(id);
         if(categorie.isPresent()){
-            return doMapper.oPtioncategorieToCategorieGetDTO(categorie);
+            Categorie cat = categorie.get();
+            return doMapper.fromCategorie(cat);
         }
         return null;
     }

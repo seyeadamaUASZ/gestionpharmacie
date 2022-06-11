@@ -9,6 +9,7 @@ import com.sid.gl.tools.ServeurResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/categorie")
@@ -55,7 +56,7 @@ public class CategorieController {
     @GetMapping("/{id}")
     public ServeurResponse getCategorie(@PathVariable("id")Long id){
         ServeurResponse response = new ServeurResponse();
-        CategorieGetDTO categorie = iCategorie.getCategorie(id);
+       CategorieGetDTO categorie = iCategorie.getCategorie(id);
         if(!categorie.equals("")){
             response.setStatut(true);
             response.setDescription("categorie trouvée ");
