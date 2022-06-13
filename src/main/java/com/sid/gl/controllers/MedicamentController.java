@@ -3,6 +3,7 @@ package com.sid.gl.controllers;
 import com.sid.gl.DTO.medicament.MedicamentGetDTO;
 import com.sid.gl.DTO.medicament.MedicamentPostDTO;
 import com.sid.gl.entities.Medicament;
+import com.sid.gl.exceptions.ResourceNotFoundException;
 import com.sid.gl.metier.medicament.IMedicament;
 import com.sid.gl.tools.ServeurResponse;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/medicament")
+@CrossOrigin(origins = "*")
 public class MedicamentController {
     private IMedicament iMedicament;
 
@@ -67,6 +69,12 @@ public class MedicamentController {
             serveurResponse.setDescription("medicament non récupéré ");
         }
         return serveurResponse;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteMedicament(@PathVariable("id") Long id) throws ResourceNotFoundException {
+       iMedicament.deleteMedicament(id);
+
     }
 
 

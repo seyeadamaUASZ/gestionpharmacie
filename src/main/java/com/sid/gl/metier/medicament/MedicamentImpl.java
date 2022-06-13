@@ -3,6 +3,7 @@ package com.sid.gl.metier.medicament;
 import com.sid.gl.DTO.medicament.MedicamentGetDTO;
 import com.sid.gl.DTO.medicament.MedicamentPostDTO;
 import com.sid.gl.entities.Medicament;
+import com.sid.gl.exceptions.ResourceNotFoundException;
 import com.sid.gl.mappers.ClientImplMapper;
 import com.sid.gl.repositories.MedicamentRepository;
 import lombok.AllArgsConstructor;
@@ -44,5 +45,15 @@ public class MedicamentImpl implements IMedicament{
             return doMapper.fromMedicament(med);
         }
         return null;
+    }
+
+    @Override
+    public void deleteMedicament(Long id) throws ResourceNotFoundException {
+        Optional<Medicament> medicament = this.repository.findById(id);
+        if(medicament.isPresent()){
+            this.repository.deleteById(id);
+        }else{
+            throw new ResourceNotFoundException("Identifiant medicament non existant !");
+        }
     }
 }
