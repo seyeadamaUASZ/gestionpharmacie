@@ -14,4 +14,8 @@ public interface IMedicament {
 
     public void deleteMedicament(Long id) throws ResourceNotFoundException;
 
+    public Integer countMedicament();
+
+    public void updateMedicament(Long id,int stock);
+
 }

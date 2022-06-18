@@ -23,6 +23,10 @@ public class Achat  extends Operation{
     @Column(name="qt_achat")
     private int quantite;
      @Column(name="prix_total")
-    private double totalPrice;
+     private double totalPrice;
+     private String typeAchat ="vente";
+
+
+
 
 }

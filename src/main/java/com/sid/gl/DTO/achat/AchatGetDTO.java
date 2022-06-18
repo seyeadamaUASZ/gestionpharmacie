@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,4 +23,8 @@ public class AchatGetDTO {
     private int quantite;
     @JsonProperty("totalPrice")
     private double totalPrice;
+    @JsonProperty("typeAchat")
+    private String typeAchat;
+    @JsonProperty("dateOperation")
+    private Date dateOperation;
 }

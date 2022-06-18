@@ -56,4 +56,20 @@ public class MedicamentImpl implements IMedicament{
             throw new ResourceNotFoundException("Identifiant medicament non existant !");
         }
     }
+    @Override
+    public Integer countMedicament() {
+        return this.repository.countMedicamentsById();
+    }
+    @Override
+    public void updateMedicament(Long id,int stock) {
+        Optional<Medicament> med = this.repository.findById(id);
+        if(med.isPresent()){
+            Medicament medicament = med.get();
+            medicament.setId(id);
+            medicament.setStock(stock);
+            this.repository.saveAndFlush(medicament);
+        }
+    }
+
+
 }

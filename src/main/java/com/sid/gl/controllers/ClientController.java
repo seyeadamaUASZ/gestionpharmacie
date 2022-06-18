@@ -15,11 +15,9 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class ClientController {
     private IClient iClient;
-
     public ClientController(IClient iClient) {
         this.iClient = iClient;
     }
-
     @GetMapping
     public ServeurResponse listClient(){
         ServeurResponse serveurResponse = new ServeurResponse();
@@ -35,11 +33,11 @@ public class ClientController {
         }
         return serveurResponse;
     }
-
     @PostMapping
     public ServeurResponse addClient(@RequestBody ClientPostDTO clientPostDTO){
         ServeurResponse serveurResponse = new ServeurResponse();
         Client client = iClient.addClient(clientPostDTO);
+
         if(client!=null){
             serveurResponse.setDescription("client ajouté");
             serveurResponse.setStatut(true);
@@ -51,8 +49,6 @@ public class ClientController {
         }
         return serveurResponse;
     }
-
-
     @GetMapping("/{id}")
     public ServeurResponse getClient(@PathVariable("id") Long id){
         ServeurResponse serveurResponse = new ServeurResponse();
@@ -68,11 +64,19 @@ public class ClientController {
         }
         return serveurResponse;
     }
-
     @DeleteMapping("/delete/{id}")
     public void deleteClient(@PathVariable("id")Long id) throws ResourceNotFoundException {
         iClient.deleteClient(id);
     }
 
+    @GetMapping("/count")
+    public ServeurResponse countClient(){
+        ServeurResponse response = new ServeurResponse();
+        Integer count = iClient.countClients();
+        response.setStatut(true);
+        response.setDescription("nombre de client");
+        response.setData(count);
+        return response;
+    }
 
 }

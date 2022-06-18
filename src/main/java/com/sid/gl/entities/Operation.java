@@ -19,5 +19,5 @@ public class Operation {
     private Long id;
     @Column(name="date_operation")
     @Temporal(TemporalType.DATE)
-    private Date dateOperation;
+    private Date dateOperation=new Date();
 }

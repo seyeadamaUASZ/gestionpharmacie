@@ -57,4 +57,20 @@ public class ClientImpl implements IClient{
         }
 
     }
+
+    @Override
+    public Integer countClients() {
+        return this.repository.countClients();
+    }
+
+    @Override
+    public void updateCLient(Long id,double montant) {
+        Optional<Client> cl = this.repository.findById(id);
+        if(cl.isPresent()){
+            Client client  = cl.get();
+            client.setId(id);
+            client.setCredit(montant);
+            this.repository.saveAndFlush(client);
+        }
+    }
 }

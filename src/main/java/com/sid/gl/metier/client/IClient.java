@@ -8,8 +8,12 @@ import com.sid.gl.exceptions.ResourceNotFoundException;
 import java.util.List;
 
 public interface IClient {
-    public Client addClient(ClientPostDTO clientPostDTO);
-    public List<ClientGetDTO> listClient();
-    public ClientGetDTO getClient(Long id);
-    public void deleteClient(Long id) throws ResourceNotFoundException;
+    Client addClient(ClientPostDTO clientPostDTO);
+    List<ClientGetDTO> listClient();
+    ClientGetDTO getClient(Long id);
+    void deleteClient(Long id) throws ResourceNotFoundException;
+
+    public Integer countClients();
+
+    void updateCLient(Long id,double montant);
 }

@@ -75,4 +75,6 @@ public class CategorieController {
         iCategorie.deleteCategorie(id);
     }
 
+
+
 }

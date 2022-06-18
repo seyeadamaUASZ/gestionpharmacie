@@ -13,4 +13,6 @@ public class CategorieGetDTO {
     private Long id;
     @JsonProperty("nom")
     private String nom;
+    @JsonProperty("urlCategorie")
+    private String urlCategorie;
 }

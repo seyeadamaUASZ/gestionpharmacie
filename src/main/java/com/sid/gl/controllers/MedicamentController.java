@@ -77,5 +77,15 @@ public class MedicamentController {
 
     }
 
+    @GetMapping("/count")
+    public ServeurResponse countMedicaments(){
+        ServeurResponse response = new ServeurResponse();
+        Integer count = iMedicament.countMedicament();
+        response.setData(count);
+        response.setDescription("nombre médicament");
+        response.setStatut(true);
+        return response;
+    }
+
 
 }
