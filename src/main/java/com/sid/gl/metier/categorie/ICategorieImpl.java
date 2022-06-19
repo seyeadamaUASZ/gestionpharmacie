@@ -3,7 +3,6 @@ package com.sid.gl.metier.categorie;
 import com.sid.gl.DTO.categorie.CategorieGetDTO;
 import com.sid.gl.DTO.categorie.CategoriePostDTO;
 import com.sid.gl.entities.Categorie;
-import com.sid.gl.entities.Operation;
 import com.sid.gl.exceptions.ResourceNotFoundException;
 import com.sid.gl.mappers.ClientImplMapper;
 import com.sid.gl.repositories.CategorieRepository;

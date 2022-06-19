@@ -8,10 +8,9 @@ import com.sid.gl.DTO.client.ClientGetDTO;
 import com.sid.gl.DTO.client.ClientPostDTO;
 import com.sid.gl.DTO.medicament.MedicamentGetDTO;
 import com.sid.gl.DTO.medicament.MedicamentPostDTO;
-import com.sid.gl.entities.Achat;
-import com.sid.gl.entities.Categorie;
-import com.sid.gl.entities.Client;
-import com.sid.gl.entities.Medicament;
+import com.sid.gl.DTO.users.UserGetDTO;
+import com.sid.gl.DTO.users.UserPostDTO;
+import com.sid.gl.entities.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -79,6 +78,24 @@ public class ClientImplMapper {
        MedicamentGetDTO medicamentGetDTO = new MedicamentGetDTO();
        BeanUtils.copyProperties(medicament,medicamentGetDTO);
        return medicamentGetDTO;
+   }
+
+   public User fromUserPostDTO(UserPostDTO userPostDTO){
+        User user = new User();
+        BeanUtils.copyProperties(userPostDTO,user);
+        return user;
+   }
+
+   public UserGetDTO fromUser(User user){
+        UserGetDTO userGetDTO = new UserGetDTO();
+        BeanUtils.copyProperties(user,userGetDTO);
+        return userGetDTO;
+   }
+
+   public User fromUserGetDTO(UserGetDTO userGetDTO){
+        User user = new User();
+        BeanUtils.copyProperties(userGetDTO,user);
+        return user;
    }
 
 }
