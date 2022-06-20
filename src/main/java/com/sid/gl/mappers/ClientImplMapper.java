@@ -8,6 +8,7 @@ import com.sid.gl.DTO.client.ClientGetDTO;
 import com.sid.gl.DTO.client.ClientPostDTO;
 import com.sid.gl.DTO.medicament.MedicamentGetDTO;
 import com.sid.gl.DTO.medicament.MedicamentPostDTO;
+import com.sid.gl.DTO.profil.ProfilDTO;
 import com.sid.gl.DTO.users.UserGetDTO;
 import com.sid.gl.DTO.users.UserPostDTO;
 import com.sid.gl.entities.*;
@@ -96,6 +97,18 @@ public class ClientImplMapper {
         User user = new User();
         BeanUtils.copyProperties(userGetDTO,user);
         return user;
+   }
+
+   public Profil fromProfilDTO(ProfilDTO profilDTO){
+        Profil profil = new Profil();
+        BeanUtils.copyProperties(profilDTO,profil);
+        return profil;
+   }
+
+   public ProfilDTO fromProfil(Profil profil){
+        ProfilDTO profilDTO = new ProfilDTO();
+        BeanUtils.copyProperties(profil,profilDTO);
+        return profilDTO;
    }
 
 }

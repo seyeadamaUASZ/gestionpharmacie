@@ -6,18 +6,17 @@ import com.sid.gl.entities.User;
 import com.sid.gl.mappers.ClientImplMapper;
 import com.sid.gl.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Transactional
+@Slf4j
 public class IAccountServiceImpl implements IAccountService {
     private UserRepository repository;
     private ClientImplMapper doMapper;
@@ -32,7 +31,7 @@ public class IAccountServiceImpl implements IAccountService {
     public User login(UserPostDTO userPostDTO) {
         User user = this.repository.findUserByTelephone(userPostDTO.getTelephone());
         if(user !=null){
-            boolean verif = verification(userPostDTO.getTelephone(), user.getTelephone());
+            boolean verif = verification(userPostDTO.getPassword(), user.getPassword());
             if(verif){
                 return user;
             }else{
@@ -42,14 +41,20 @@ public class IAccountServiceImpl implements IAccountService {
         return null;
     }
 
-    @Override
-    public User addUser(UserPostDTO userPostDTO) {
-        return this.repository.save(doMapper.fromUserPostDTO(userPostDTO));
-    }
 
     @Override
     public boolean verification(String password, String passwordHash) {
         return encoder.matches(password, passwordHash);
+    }
+
+    @Override
+    public User addUser(User user) {
+        return this.repository.save(user);
+    }
+
+    @Override
+    public List<User> listUsers() {
+        return this.repository.findAll();
     }
 
 
